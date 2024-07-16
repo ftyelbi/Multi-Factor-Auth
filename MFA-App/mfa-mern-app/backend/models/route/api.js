@@ -1,14 +1,22 @@
 """Implement login and logout routes"""
+"""Implement MFA verification"""
 
 const express = require('express');
 const router = express.Router();
-const passport = require('passport');
+const { mfaSecret } = require('../models/mfa');
 
-router.post('/login', passport.authenticate('local'), (req, res) => {
-	  res.json(req.user);
-});
-
-router.get('/logout', (req, res) => {
-	  req.logout();
-	  res.json({ message: 'Logged out successfully' });
+router.post('/mfa/verify', async (req, res) => {
+	  const { token } = req.body;
+	  const user = await User.findById(req.user._id);
+	  const verified = await googleAuthenticator.verifyToken(
+		      user.mfaSecret,
+		      token
+		    );
+	  if (verified) {
+		      user.mfaEnabled = true;
+		      await user.save();
+		      res.json({ message: 'MFA enabled successfully' });
+		    } else {
+			        res.status(401).json({ message: 'Invalid MFA token' });
+			      }
 });
