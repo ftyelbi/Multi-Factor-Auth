@@ -1,11 +1,10 @@
-mport logo from './logo.svg';
+import logo from './logo.svg';
 import './App.css';
-import HelloWorld from './HelloWorld'; // Import the new component
 
 function App() {
 	  return (
-		      <div className="mfa-App">
-		        <header className="mfa-App-header">
+		      <div className="App">
+		        <header className="App-header">
 		          <img src={logo} className="App-logo" alt="logo" />
 		          <p>Welcome to My App!</p>
 		          <a
@@ -17,9 +16,6 @@ function App() {
 		            Learn React
 		          </a>
 		        </header>
-		        <HelloWorld /> // Add the new component here
 		      </div>
 		    );
 }
-
-export default App;
