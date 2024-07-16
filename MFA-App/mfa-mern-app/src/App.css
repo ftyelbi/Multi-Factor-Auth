@@ -1,4 +1,4 @@
-.mfa-App {
+.App {
   text-align: center;
 }
 
@@ -13,7 +13,7 @@
   }
 }
 
-.mfa-App-header {
+.App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
